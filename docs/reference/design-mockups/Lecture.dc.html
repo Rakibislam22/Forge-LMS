@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forge · Watch lecture</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid #C2410C;outline-offset:2px}
+.navlink:hover{color:#C2410C}
+.lec:hover{background:#FBE9DF}
+</style>
+</helmet>
+<div style="font-family:Inter,system-ui,sans-serif;color:#15171C;background:#F6F4EF;min-height:1040px">
+  <header style="border-bottom:1px solid #E2DED5;background:#FFFFFF">
+    <div style="max-width:1200px;margin:0 auto;padding:0 40px;min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="6" fill="#15171C"></rect><path d="M8 20V8h12v4h-8v2h6v4h-6v2z" fill="#F6F4EF"></path></svg>
+        Forge
+      </a>
+      <nav style="display:flex;align-items:center;gap:8px">
+        <a class="navlink" href="Main.dc.html" style="padding:12px 14px;font-weight:600;font-size:15px;color:#C2410C">Courses</a>
+        <a href="Admin-Login.dc.html" style="padding:12px 18px;border:1px solid #15171C;border-radius:8px;font-weight:600;font-size:15px">Admin login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width:1200px;margin:0 auto;padding:32px 40px 72px;display:flex;flex-direction:column;gap:24px">
+    <nav aria-label="Breadcrumb" style="font-size:14px;color:#5B606B;display:flex;gap:8px;flex-wrap:wrap">
+      <a href="Main.dc.html" style="text-decoration:underline">All courses</a><span aria-hidden="true">/</span>
+      <a href="CourseDetail.dc.html" style="text-decoration:underline">Full-Stack Web Development with MERN</a><span aria-hidden="true">/</span>
+      <span>{{current.title}}</span>
+    </nav>
+
+    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+      <section style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <div style="position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#15171C;display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;right:-70px;top:-90px;width:320px;height:320px;border-radius:50%;background:#1F2530"></div>
+          <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;color:#FFFFFF">
+            <span style="width:76px;height:76px;border-radius:50%;background:#C2410C;display:flex;align-items:center;justify-content:center">
+              <svg width="30" height="30" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z" fill="#FFFFFF"></path></svg>
+            </span>
+            <span style="font-size:14px;color:#C9CDD6">Embedded video player · video URL from the lecture record</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:14px;font-weight:600;color:#C2410C">Lecture {{current.n}} of 6</span>
+          <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:34px;line-height:1.1;letter-spacing:-0.01em">{{current.title}}</h1>
+          <p style="margin:0;font-size:17px;line-height:1.6;color:#5B606B;max-width:720px">{{current.desc}}</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <button onClick="{{prev}}" style="min-height:48px;padding:0 22px;border-radius:10px;border:1px solid #15171C;background:#FFFFFF;color:#15171C;font:600 16px Inter,sans-serif;cursor:pointer">← Previous</button>
+          <button onClick="{{next}}" style="min-height:48px;padding:0 22px;border-radius:10px;border:0;background:#15171C;color:#FFFFFF;font:600 16px Inter,sans-serif;cursor:pointer">Next lecture →</button>
+        </div>
+      </section>
+
+      <aside style="flex:1 1 320px;min-width:0;background:#FFFFFF;border:1px solid #E2DED5;border-radius:14px;overflow:hidden">
+        <div style="padding:18px 22px;border-bottom:1px solid #E2DED5">
+          <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:20px">Course lectures</h2>
+        </div>
+        <ol style="list-style:none;margin:0;padding:0">
+          <sc-for list="{{lectures}}" as="l" hint-placeholder-count="6">
+            <li style="border-bottom:1px solid #E2DED5">
+              <button class="lec" onClick="{{l.pick}}" style="display:flex;align-items:center;gap:14px;width:100%;min-height:60px;padding:12px 22px;border:0;text-align:left;cursor:pointer;font:inherit;color:#15171C;background:{{l.bg}}">
+                <span style="flex:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;background:{{l.badgeBg}};color:{{l.badgeFg}}">{{l.n}}</span>
+                <span style="font-size:15px;font-weight:{{l.weight}};line-height:1.35">{{l.title}}</span>
+              </button>
+            </li>
+          </sc-for>
+        </ol>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1040}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { i: 0 }; }
+  renderVals() {
+    const data = [
+      { n:1, title:'Course introduction and setup', desc:'What we build, the tools you need and how the project is organised.' },
+      { n:2, title:'Project structure with MVC', desc:'Separate routes, controllers and models from the first commit.' },
+      { n:3, title:'Building the Express API', desc:'Create the course and lecture endpoints with validation.' },
+      { n:4, title:'Connecting MongoDB with Mongoose', desc:'Define schemas, seed data and persist your records.' },
+      { n:5, title:'Admin authentication with JWT', desc:'Protect management routes with a simple token-based login.' },
+      { n:6, title:'The React frontend', desc:'Fetch data from the API and render the student-facing pages.' }
+    ];
+    const i = this.state.i;
+    return {
+      current: data[i],
+      prev: () => this.setState({ i: Math.max(0, i - 1) }),
+      next: () => this.setState({ i: Math.min(data.length - 1, i + 1) }),
+      lectures: data.map((d, k) => ({
+        ...d,
+        pick: () => this.setState({ i: k }),
+        bg: k === i ? '#FBE9DF' : '#FFFFFF',
+        badgeBg: k === i ? '#C2410C' : '#F6F4EF',
+        badgeFg: k === i ? '#FFFFFF' : '#15171C',
+        weight: k === i ? 600 : 500
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

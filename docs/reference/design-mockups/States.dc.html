@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forge · Page states</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a:focus-visible,button:focus-visible{outline:3px solid #C2410C;outline-offset:2px}
+</style>
+</helmet>
+<div style="width:1280px;height:820px;box-sizing:border-box;padding:48px;background:#F6F4EF;font-family:Inter,system-ui,sans-serif;color:#15171C;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px">
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:22px">Loading</h2>
+    <div style="flex:1;background:#FFFFFF;border:1px solid #E2DED5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column" role="status" aria-label="Loading courses">
+      <div style="height:176px;background:#E9E5DB"></div>
+      <div style="padding:22px;display:flex;flex-direction:column;gap:14px">
+        <div style="height:22px;width:80%;border-radius:6px;background:#E9E5DB"></div>
+        <div style="height:14px;width:100%;border-radius:6px;background:#EFECE4"></div>
+        <div style="height:14px;width:92%;border-radius:6px;background:#EFECE4"></div>
+        <div style="height:14px;width:60%;border-radius:6px;background:#EFECE4"></div>
+        <div style="margin-top:20px;display:flex;justify-content:space-between">
+          <div style="height:24px;width:64px;border-radius:6px;background:#E9E5DB"></div>
+          <div style="height:18px;width:110px;border-radius:6px;background:#EFECE4"></div>
+        </div>
+      </div>
+      <div style="margin-top:auto;padding:0 22px 22px;font-size:14px;color:#5B606B">Loading courses…</div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:22px">Empty</h2>
+    <div style="flex:1;background:#FFFFFF;border:1px dashed #B9B3A5;border-radius:14px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px">
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="36" rx="6" fill="none" stroke="#15171C" stroke-width="3"></rect><path d="M8 24h48" stroke="#15171C" stroke-width="3"></path><circle cx="32" cy="38" r="5" fill="#C2410C"></circle></svg>
+      <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:22px">No courses yet</h3>
+      <p style="margin:0;font-size:15px;line-height:1.5;color:#5B606B;max-width:280px">Courses appear here as soon as an admin publishes the first one. Check back soon.</p>
+      <a href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid #15171C;border-radius:10px;font-weight:600;font-size:15px;color:#15171C;text-decoration:none">Refresh list</a>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:22px">Error</h2>
+    <div role="alert" style="flex:1;background:#FFFFFF;border:1px solid #E2DED5;border-radius:14px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px">
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8 58 54H6z" fill="none" stroke="#B42318" stroke-width="3" stroke-linejoin="round"></path><path d="M32 26v14" stroke="#B42318" stroke-width="3" stroke-linecap="round"></path><circle cx="32" cy="47" r="2.5" fill="#B42318"></circle></svg>
+      <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:22px">Couldn't load courses</h3>
+      <p style="margin:0;font-size:15px;line-height:1.5;color:#5B606B;max-width:280px">The server didn't respond. Check your connection and try again.</p>
+      <button style="min-height:44px;padding:0 22px;border:0;border-radius:10px;background:#C2410C;color:#FFFFFF;font:600 15px Inter,sans-serif;cursor:pointer">Try again</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

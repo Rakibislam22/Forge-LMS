@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forge · Courses</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F4EF}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid #C2410C;outline-offset:2px}
+.card{transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(21,23,28,.10)}
+.navlink:hover{color:#C2410C}
+</style>
+</helmet>
+<div style="font-family:Inter,system-ui,sans-serif;color:#15171C;background:#F6F4EF;min-height:1280px">
+  <header style="border-bottom:1px solid #E2DED5;background:#FFFFFF">
+    <div style="max-width:1200px;margin:0 auto;padding:0 40px;min-height:72px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+      <a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="6" fill="#15171C"></rect><path d="M8 20V8h12v4h-8v2h6v4h-6v2z" fill="#F6F4EF"></path></svg>
+        Forge
+      </a>
+      <nav style="display:flex;align-items:center;gap:8px">
+        <a class="navlink" href="Main.dc.html" style="padding:12px 14px;font-weight:600;font-size:15px;color:#C2410C">Courses</a>
+        <a href="Admin-Login.dc.html" style="padding:12px 18px;min-height:20px;border:1px solid #15171C;border-radius:8px;font-weight:600;font-size:15px">Admin login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width:1200px;margin:0 auto;padding:56px 40px 72px">
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:640px">
+      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:48px;line-height:1.05;letter-spacing:-0.02em">All courses</h1>
+      <p style="margin:0;font-size:18px;line-height:1.5;color:#5B606B">Pick a course, open the lecture list and start watching. No sign-up needed.</p>
+    </div>
+
+    <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px">
+      <sc-for list="{{courses}}" as="c" hint-placeholder-count="6">
+        <a class="card" href="CourseDetail.dc.html" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #E2DED5;border-radius:14px;overflow:hidden">
+          <div style="position:relative;height:176px;overflow:hidden;background:{{c.bg}}">
+            <div style="position:absolute;right:-36px;top:-48px;width:190px;height:190px;border-radius:50%;background:{{c.shape}}"></div>
+            <div style="position:absolute;left:24px;bottom:24px;width:64px;height:8px;border-radius:4px;background:{{c.shape}}"></div>
+            <div style="position:absolute;left:24px;top:20px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:40px;letter-spacing:-0.02em;color:{{c.fg}}">{{c.tag}}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:20px 22px 22px;flex:1">
+            <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:21px;line-height:1.2;font-weight:700">{{c.title}}</h2>
+            <p style="margin:0;font-size:15px;line-height:1.5;color:#5B606B;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{c.desc}}</p>
+            <div style="margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between">
+              <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px">{{c.price}}</span>
+              <span style="font-size:15px;font-weight:600;color:#C2410C">View course →</span>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </main>
+
+  <footer style="border-top:1px solid #E2DED5;background:#FFFFFF">
+    <div style="max-width:1200px;margin:0 auto;padding:28px 40px;font-size:14px;color:#5B606B">Forge LMS · Simplified learning management system</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1280}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { courses: [
+      { tag:'MERN', bg:'#1F3A5F', fg:'#FFFFFF', shape:'#2E5283', title:'Full-Stack Web Development with MERN', desc:'Build and ship a complete app with MongoDB, Express, React and Node.js, from the database schema to the deployed frontend.', price:'$49' },
+      { tag:'TS', bg:'#C2410C', fg:'#FFFFFF', shape:'#A8370A', title:'TypeScript from Zero to Confident', desc:'Types, generics and narrowing explained through small, practical exercises you can apply to any JavaScript codebase.', price:'$29' },
+      { tag:'API', bg:'#2F6F5E', fg:'#FFFFFF', shape:'#3F8A75', title:'REST API Design with Express', desc:'Structure routes, controllers and models using MVC, validate input and handle errors the way production APIs do.', price:'$34' },
+      { tag:'SQL', bg:'#E8B04A', fg:'#15171C', shape:'#F2C97A', title:'PostgreSQL for Application Developers', desc:'Model relational data, write confident queries and connect Postgres to a Node.js backend.', price:'$39' },
+      { tag:'React', bg:'#15171C', fg:'#FFFFFF', shape:'#2B2F38', title:'React Patterns in Practice', desc:'Component composition, data fetching and state management patterns for interfaces that stay easy to change.', price:'$44' },
+      { tag:'Git', bg:'#DAD3C3', fg:'#15171C', shape:'#CBC2AE', title:'Git and GitHub Workflow', desc:'Branching, pull requests and code review habits that keep a team repository clean.', price:'$19' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>
