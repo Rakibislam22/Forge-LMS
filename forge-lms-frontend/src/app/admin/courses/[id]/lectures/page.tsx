@@ -2,15 +2,18 @@
 
 import { useEffect, useState, use } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Course, Lecture, ApiResponse, CourseDetailResponse } from "@/types/course";
 import { API_BASE_URL } from "@/config/api";
+import { clearAdminSession } from "@/utils/auth";
 
 export default function AdminLecturesPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const router = useRouter();
   const resolvedParams = use(params);
   const courseId = resolvedParams.id;
 
@@ -131,6 +134,12 @@ export default function AdminLecturesPage({
         }),
       });
 
+      if (res.status === 401) {
+        clearAdminSession();
+        router.push("/admin/login");
+        return;
+      }
+
       const json: ApiResponse<{ lecture: Lecture }> = await res.json();
       if (!res.ok || !json.success) {
         throw new Error(json.error?.message || "Failed to save lecture");
@@ -159,6 +168,12 @@ export default function AdminLecturesPage({
           Accept: "application/json",
         },
       });
+
+      if (res.status === 401) {
+        clearAdminSession();
+        router.push("/admin/login");
+        return;
+      }
 
       if (!res.ok) throw new Error("Failed to delete lecture");
 

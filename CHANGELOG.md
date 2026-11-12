@@ -24,6 +24,7 @@ in `Asia/Dhaka`.
 ## [Unreleased]
 
 ### Added
+-   Multi-layer Admin Route Protection across frontend and backend: Next.js server-side cookie middleware (`src/middleware.ts`), client-side `AdminLayout` guard (`src/app/admin/layout.tsx`), automatic redirection to `/admin/login` for unauthenticated visitors, 401 response interception with session cleanup (`src/utils/auth.ts`), and server-side JWT verification in Express (`requireAdmin`).
 -   Vercel serverless deployment readiness in `forge-lms-backend`: Created `api/index.js` serverless handler, `vercel.json` routing configuration, `.vercelignore`, serverless-resilient connection pooling in `src/config/db.ts`, and auto-connecting middleware in `src/app.ts`.
 -   Enriched MongoDB database seed in `forge-lms-backend`: Populated all 6 comprehensive courses with 23 realistic video lectures, structured syllabi, and bcrypt-hashed admin account.
 -   Dedicated Student Dashboard page (`/dashboard`) in `forge-lms-frontend`: Quick "Continue Watching" resume card powered by browser `localStorage`, learning metrics overview, recent watch history, and course catalog search.

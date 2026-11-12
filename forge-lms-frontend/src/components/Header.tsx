@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { clearAdminSession } from "@/utils/auth";
 
 interface HeaderProps {
   activeTab?: "courses" | "dashboard" | "admin";
@@ -31,14 +32,8 @@ export default function Header({ activeTab, backHref, backLabel }: HeaderProps) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    try {
-      localStorage.removeItem("forge_admin_token");
-      localStorage.removeItem("forge_admin_user");
-      window.dispatchEvent(new Event("storage"));
-      router.push("/");
-    } catch {
-      router.push("/");
-    }
+    clearAdminSession();
+    router.push("/");
   };
 
   const isDashboardActive =

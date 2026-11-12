@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Course, ApiResponse, CoursesResponse } from "@/types/course";
 import { API_BASE_URL } from "@/config/api";
 import { formatPrice } from "@/components/CourseCard";
+import { clearAdminSession } from "@/utils/auth";
 
 export default function AdminCoursesPage() {
+  const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -89,6 +92,12 @@ export default function AdminCoursesPage() {
           Accept: "application/json",
         },
       });
+
+      if (res.status === 401) {
+        clearAdminSession();
+        router.push("/admin/login");
+        return;
+      }
 
       if (!res.ok) throw new Error("Failed to delete course");
 

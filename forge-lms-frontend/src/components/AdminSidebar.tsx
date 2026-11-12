@@ -2,20 +2,15 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { clearAdminSession } from "@/utils/auth";
 
 export default function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
 
   const handleLogout = () => {
-    try {
-      localStorage.removeItem("forge_admin_token");
-      localStorage.removeItem("forge_admin_user");
-      window.dispatchEvent(new Event("storage"));
-      router.push("/admin/login");
-    } catch {
-      router.push("/admin/login");
-    }
+    clearAdminSession();
+    router.push("/admin/login");
   };
 
   const isCourses = pathname.startsWith("/admin/courses");

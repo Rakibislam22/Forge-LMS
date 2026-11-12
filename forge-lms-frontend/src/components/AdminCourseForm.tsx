@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Course, ApiResponse } from "@/types/course";
 import { API_BASE_URL } from "@/config/api";
+import { clearAdminSession } from "@/utils/auth";
 
 interface CourseFormProps {
   initialCourse?: Course;
@@ -60,6 +61,12 @@ export default function AdminCourseForm({ initialCourse, isEdit = false }: Cours
           thumbnailUrl,
         }),
       });
+
+      if (res.status === 401) {
+        clearAdminSession();
+        router.push("/admin/login");
+        return;
+      }
 
       const json: ApiResponse<{ course: Course }> = await res.json();
       if (!res.ok || !json.success) {

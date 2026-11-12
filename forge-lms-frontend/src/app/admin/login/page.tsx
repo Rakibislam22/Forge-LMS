@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ApiResponse, LoginResponse } from "@/types/course";
 import { API_BASE_URL } from "@/config/api";
+import { setAdminSession } from "@/utils/auth";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -12,6 +13,17 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("forge_admin_token");
+      if (token) {
+        router.replace("/admin/courses");
+      }
+    } catch {
+      // Ignore
+    }
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,9 +45,8 @@ export default function AdminLoginPage() {
         throw new Error(data.error?.message || "Incorrect email or password. Try again.");
       }
 
-      // Store token and user
-      localStorage.setItem("forge_admin_token", data.data.token);
-      localStorage.setItem("forge_admin_user", JSON.stringify(data.data.admin));
+      // Store token and user in localStorage and cookie
+      setAdminSession(data.data.token, data.data.admin);
 
       router.push("/admin/courses");
     } catch (err) {
