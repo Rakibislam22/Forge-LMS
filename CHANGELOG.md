@@ -24,6 +24,7 @@ in `Asia/Dhaka`.
 ## [Unreleased]
 
 ### Added
+-   Enriched MongoDB database seed in `forge-lms-backend`: Populated all 6 comprehensive courses with 23 realistic video lectures, structured syllabi, and bcrypt-hashed admin account.
 -   Dedicated Student Dashboard page (`/dashboard`) in `forge-lms-frontend`: Quick "Continue Watching" resume card powered by browser `localStorage`, learning metrics overview, recent watch history, and course catalog search.
 -   Enhanced educational Landing Page (`/`) in `forge-lms-frontend`: Hero banner with action CTAs, category filter tabs (Full-Stack, Backend, Frontend, Databases), live search, platform stats, and "Why Forge LMS" value section.
 -   Direct Frontend-to-Backend API integration: Configured `NEXT_PUBLIC_API_URL=http://localhost:5000/api` in `forge-lms-frontend/.env.local`, with dynamic CORS handling in `forge-lms-backend/src/app.ts`.
@@ -37,6 +38,9 @@ in `Asia/Dhaka`.
     `docs/` (01–13, decisions log).
 -   `docs/reference/`: DataPollex assessment PDF and the "Forge LMS" design
     mockups (11 screens: student, mobile, states, admin).
+
+### Changed
+-   Removed pre-filled hardcoded admin credentials from `AdminLoginPage` (`src/app/admin/login/page.tsx`), requiring the administrator to manually input credentials for secure authentication.
 
 ### Fixed
 -   Cached `useSyncExternalStore` snapshot results (`cachedHistoryValue`, `cachedLastWatchedValue`) in `src/app/dashboard/page.tsx` against raw local storage string equality, preventing React 19 infinite re-render loop error (`The result of getSnapshot should be cached to avoid an infinite loop`).

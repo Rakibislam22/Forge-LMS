@@ -16,37 +16,37 @@ const SEED_COURSES = [
       {
         title: "Course introduction and setup",
         description: "What we build, the tools you need and how the project is organised.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=7CqJlxBYj-M",
         order: 1,
       },
       {
         title: "Project structure with MVC",
         description: "Separate routes, controllers and models from the first commit.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=ENrzD9HAZK4",
         order: 2,
       },
       {
         title: "Building the Express API",
         description: "Create the course and lecture endpoints with validation.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=7CqJlxBYj-M",
         order: 3,
       },
       {
         title: "Connecting MongoDB with Mongoose",
         description: "Define schemas, seed data and persist your records.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=7CqJlxBYj-M",
         order: 4,
       },
       {
         title: "Admin authentication with JWT",
         description: "Protect management routes with a simple token-based login.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=7CqJlxBYj-M",
         order: 5,
       },
       {
         title: "The React frontend",
         description: "Fetch data from the API and render the student-facing pages.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=bMknfKXIFA8",
         order: 6,
       },
     ],
@@ -61,14 +61,26 @@ const SEED_COURSES = [
       {
         title: "Introduction to Static Typing",
         description: "Why TypeScript matters and how the compiler works.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=BCg4U1FzODs",
         order: 1,
       },
       {
         title: "Primitives and Object Types",
         description: "Interfaces, types, and strict object contracts.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=BCg4U1FzODs",
         order: 2,
+      },
+      {
+        title: "Generics and Advanced Utility Types",
+        description: "Building flexible, reusable and type-safe abstractions.",
+        videoUrl: "https://www.youtube.com/watch?v=BCg4U1FzODs",
+        order: 3,
+      },
+      {
+        title: "TypeScript in React and Express",
+        description: "Typing components, API responses, and database models.",
+        videoUrl: "https://www.youtube.com/watch?v=BCg4U1FzODs",
+        order: 4,
       },
     ],
   },
@@ -82,8 +94,26 @@ const SEED_COURSES = [
       {
         title: "HTTP Methods and Status Codes",
         description: "Building semantic, predictable REST APIs.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=ENrzD9HAZK4",
         order: 1,
+      },
+      {
+        title: "Modular MVC Architecture",
+        description: "Decoupling routing logic from controller business rules.",
+        videoUrl: "https://www.youtube.com/watch?v=ENrzD9HAZK4",
+        order: 2,
+      },
+      {
+        title: "Request Validation with Zod",
+        description: "Validating incoming request payloads and query parameters.",
+        videoUrl: "https://www.youtube.com/watch?v=ENrzD9HAZK4",
+        order: 3,
+      },
+      {
+        title: "Centralized Error Handling",
+        description: "Consistent error envelopes and graceful fallback mechanisms.",
+        videoUrl: "https://www.youtube.com/watch?v=ENrzD9HAZK4",
+        order: 4,
       },
     ],
   },
@@ -97,8 +127,20 @@ const SEED_COURSES = [
       {
         title: "Relational Modeling",
         description: "Primary keys, foreign keys and indexes.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        videoUrl: "https://www.youtube.com/watch?v=qw--VYLpxG4",
         order: 1,
+      },
+      {
+        title: "Writing Confident SQL Queries",
+        description: "Joins, aggregations, and performance optimization.",
+        videoUrl: "https://www.youtube.com/watch?v=qw--VYLpxG4",
+        order: 2,
+      },
+      {
+        title: "Transactions and ACID Compliance",
+        description: "Ensuring database consistency across multi-step mutations.",
+        videoUrl: "https://www.youtube.com/watch?v=qw--VYLpxG4",
+        order: 3,
       },
     ],
   },
@@ -111,9 +153,21 @@ const SEED_COURSES = [
     lectures: [
       {
         title: "Composition vs Inheritance",
-        description: "Building reusable UI components.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        description: "Building flexible, reusable UI components.",
+        videoUrl: "https://www.youtube.com/watch?v=bMknfKXIFA8",
         order: 1,
+      },
+      {
+        title: "Custom Hooks & State Encapsulation",
+        description: "Separating UI presentation from asynchronous data flows.",
+        videoUrl: "https://www.youtube.com/watch?v=bMknfKXIFA8",
+        order: 2,
+      },
+      {
+        title: "Performance, Memoization & Concurrent React",
+        description: "Optimizing render cycles and preventing layout thrashing.",
+        videoUrl: "https://www.youtube.com/watch?v=bMknfKXIFA8",
+        order: 3,
       },
     ],
   },
@@ -125,10 +179,22 @@ const SEED_COURSES = [
     thumbnailUrl: "",
     lectures: [
       {
-        title: "Trunk-based Development",
-        description: "Branching strategies for modern teams.",
-        videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        title: "Trunk-based Development & Branching",
+        description: "Branching strategies for collaborative software engineering.",
+        videoUrl: "https://www.youtube.com/watch?v=RGOj5yH7evk",
         order: 1,
+      },
+      {
+        title: "Interactive Rebasing and Clean Commits",
+        description: "Crafting meaningful commit histories before merging PRs.",
+        videoUrl: "https://www.youtube.com/watch?v=RGOj5yH7evk",
+        order: 2,
+      },
+      {
+        title: "Pull Request & Code Review Etiquette",
+        description: "Writing actionable reviews and maintaining team standards.",
+        videoUrl: "https://www.youtube.com/watch?v=RGOj5yH7evk",
+        order: 3,
       },
     ],
   },
@@ -138,21 +204,21 @@ async function seed() {
   console.log("🌱 Starting Forge LMS database seed…");
   await connectDB();
 
-  // 1. Seed or update Admin
+  // 1. Seed or update Admin from environment variables
   const passwordHash = await bcrypt.hash(env.ADMIN_PASSWORD, env.BCRYPT_ROUNDS);
   let admin = await Admin.findOne({ email: env.ADMIN_EMAIL.toLowerCase() });
 
   if (admin) {
     admin.passwordHash = passwordHash;
     await admin.save();
-    console.log(`👤 Admin updated: ${env.ADMIN_EMAIL}`);
+    console.log(`👤 Admin updated from env: ${env.ADMIN_EMAIL}`);
   } else {
     admin = await Admin.create({
       email: env.ADMIN_EMAIL.toLowerCase(),
       passwordHash,
       role: "admin",
     });
-    console.log(`👤 Admin created: ${env.ADMIN_EMAIL}`);
+    console.log(`👤 Admin created from env: ${env.ADMIN_EMAIL}`);
   }
 
   // 2. Clear existing courses & lectures for clean seed
@@ -183,8 +249,8 @@ async function seed() {
 
   console.log("=========================================");
   console.log(`✨ Seed complete!`);
-  console.log(`📚 Total Courses: ${totalCourses}`);
-  console.log(`🎥 Total Lectures: ${totalLectures}`);
+  console.log(`📚 Total Courses in MongoDB: ${totalCourses}`);
+  console.log(`🎥 Total Lectures in MongoDB: ${totalLectures}`);
   console.log(`🔑 Admin Login: ${env.ADMIN_EMAIL}`);
   console.log("=========================================");
 
