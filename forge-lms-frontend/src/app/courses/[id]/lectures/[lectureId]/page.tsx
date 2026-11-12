@@ -51,6 +51,33 @@ export default function LectureWatchPage({
           setPrevId(json.data.prevLectureId || null);
           setNextId(json.data.nextLectureId || null);
           setLoading(false);
+
+          // Save to student dashboard learning history in browser
+          if (typeof window !== "undefined") {
+            try {
+              const historyItem = {
+                courseId: json.data.course.id || (json.data.course as { _id?: string })._id,
+                courseTitle: json.data.course.title,
+                lectureId: json.data.lecture.id || (json.data.lecture as { _id?: string })._id,
+                lectureTitle: json.data.lecture.title,
+                lectureNumber: json.data.lecture.order || 1,
+                watchedAt: new Date().toISOString(),
+              };
+              const raw = localStorage.getItem("forge_student_history");
+              const list = raw ? JSON.parse(raw) : [];
+              const updated = [
+                historyItem,
+                ...list.filter(
+                  (item: { courseId: string; lectureId: string }) =>
+                    item.courseId !== historyItem.courseId || item.lectureId !== historyItem.lectureId
+                ),
+              ].slice(0, 10);
+              localStorage.setItem("forge_student_history", JSON.stringify(updated));
+              localStorage.setItem("forge_last_watched", JSON.stringify(historyItem));
+            } catch {
+              // Ignore local storage errors
+            }
+          }
         }
       } catch (err) {
         if (!ignore) {

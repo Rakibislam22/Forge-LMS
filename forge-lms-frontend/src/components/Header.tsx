@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 interface HeaderProps {
-  activeTab?: "courses" | "admin";
+  activeTab?: "courses" | "dashboard" | "admin";
   backHref?: string;
   backLabel?: string;
 }
@@ -41,10 +41,14 @@ export default function Header({ activeTab, backHref, backLabel }: HeaderProps) 
     }
   };
 
+  const isDashboardActive =
+    activeTab === "dashboard" || pathname.startsWith("/dashboard");
+
   const isCoursesActive =
-    activeTab === "courses" ||
-    pathname === "/" ||
-    pathname.startsWith("/courses");
+    (activeTab === "courses" ||
+      pathname === "/" ||
+      pathname.startsWith("/courses")) &&
+    !isDashboardActive;
 
   const isAdminActive =
     activeTab === "admin" || pathname.startsWith("/admin");
@@ -85,7 +89,7 @@ export default function Header({ activeTab, backHref, backLabel }: HeaderProps) 
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-3">
+        <nav className="hidden md:flex items-center gap-2 lg:gap-3">
           <Link
             href="/"
             className={`px-3.5 py-2 text-[15px] font-semibold transition-colors rounded-lg ${
@@ -95,6 +99,17 @@ export default function Header({ activeTab, backHref, backLabel }: HeaderProps) 
             }`}
           >
             Courses
+          </Link>
+
+          <Link
+            href="/dashboard"
+            className={`px-3.5 py-2 text-[15px] font-semibold transition-colors rounded-lg flex items-center gap-1.5 ${
+              isDashboardActive
+                ? "text-[#C2410C] bg-[#FBE9DF]"
+                : "text-[#15171C] hover:text-[#C2410C]"
+            }`}
+          >
+            <span>Student Dashboard</span>
           </Link>
 
           {isAdmin ? (
@@ -172,6 +187,17 @@ export default function Header({ activeTab, backHref, backLabel }: HeaderProps) 
           >
             <span>Courses</span>
             <span className="text-[13px] text-[#5B606B]">Browse</span>
+          </Link>
+
+          <Link
+            href="/dashboard"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`py-2 text-[15px] font-semibold flex items-center justify-between ${
+              isDashboardActive ? "text-[#C2410C]" : "text-[#15171C]"
+            }`}
+          >
+            <span>Student Dashboard</span>
+            <span className="text-[13px] text-[#5B606B]">My Learning</span>
           </Link>
 
           {isAdmin ? (
