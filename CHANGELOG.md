@@ -24,6 +24,7 @@ in `Asia/Dhaka`.
 ## [Unreleased]
 
 ### Added
+-   Vercel serverless deployment readiness in `forge-lms-backend`: Created `api/index.js` serverless handler, `vercel.json` routing configuration, `.vercelignore`, serverless-resilient connection pooling in `src/config/db.ts`, and auto-connecting middleware in `src/app.ts`.
 -   Enriched MongoDB database seed in `forge-lms-backend`: Populated all 6 comprehensive courses with 23 realistic video lectures, structured syllabi, and bcrypt-hashed admin account.
 -   Dedicated Student Dashboard page (`/dashboard`) in `forge-lms-frontend`: Quick "Continue Watching" resume card powered by browser `localStorage`, learning metrics overview, recent watch history, and course catalog search.
 -   Enhanced educational Landing Page (`/`) in `forge-lms-frontend`: Hero banner with action CTAs, category filter tabs (Full-Stack, Backend, Frontend, Databases), live search, platform stats, and "Why Forge LMS" value section.
