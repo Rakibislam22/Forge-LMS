@@ -24,6 +24,9 @@ in `Asia/Dhaka`.
 ## [Unreleased]
 
 ### Added
+-   Complete student panel in `forge-lms-frontend`: Course details page (`/courses/[id]`), Lecture player page with safe embed and playlist (`/courses/[id]/lectures/[lectureId]`), and responsive navigation Header with mobile drawer.
+-   Complete admin dashboard in `forge-lms-frontend`: Admin login (`/admin/login`), AdminSidebar, Courses table with delete confirmation modal (`/admin/courses`), Course create & edit forms with live preview (`/admin/courses/new`, `/edit`), and Course lecture manager (`/admin/courses/[id]/lectures`).
+-   Complete Express + TypeScript MVC backend in `forge-lms-backend`: Mongoose models (`Admin`, `Course`, `Lecture`), auth controller with bcrypt + JWT, course and lecture controllers with cascade delete, rate-limiting, Zod request validators, and database seed script (`src/seed/seed.ts`).
 -   Student course listing page in `forge-lms-frontend` (FR-S1): Header, CourseCard with geometric fallback palettes, responsive grid, API route (`/api/courses`), and loading/empty/error states matching `States.dc.html`.
 -   Agent setup for Forge LMS: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
     `.agents/` rules, skills and workflows, and the full specification in
@@ -32,6 +35,7 @@ in `Asia/Dhaka`.
     mockups (11 screens: student, mobile, states, admin).
 
 ### Fixed
+-   Configured `@tailwindcss/postcss` and PostCSS in `forge-lms-frontend` and switched build/dev scripts to `--webpack` mode, resolving Turbopack Windows process panic and unstyled CSS rendering.
 -   Restored `@tailwindcss/turbopack` CSS loader rule in `next.config.ts`, ensuring Turbopack compiles Tailwind utility classes and styles the course listing correctly.
 -   Added inline attribute-interceptor script in `src/app/layout.tsx` to prevent browser extensions from injecting `bis_skin_checked` into Next.js internal `<MetadataWrapper>` hidden DOM nodes.
 -   Replaced non-standard `@theme` at-rule in `src/app/globals.css` with standard CSS custom properties and utility classes, completely eliminating PostCSS/Turbopack `Unknown at rule: @theme` parsing warnings.
