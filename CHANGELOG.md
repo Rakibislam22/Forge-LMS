@@ -42,6 +42,7 @@ in `Asia/Dhaka`.
     mockups (11 screens: student, mobile, states, admin).
 
 ### Changed
+-   Rewrote root `README.md` into a comprehensive evaluator submission guide covering live demo URLs, test admin credentials, full feature breakdown (Student & Admin panels), local setup & seeding guide, Vercel deployment walkthrough, and REST API reference table.
 -   Removed pre-filled hardcoded admin credentials from `AdminLoginPage` (`src/app/admin/login/page.tsx`), requiring the administrator to manually input credentials for secure authentication.
 
 ### Removed
