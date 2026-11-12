@@ -31,7 +31,22 @@ body {
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 3px solid #C2410C;
   outline-offset: 2px;
+}
+
+.card-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(21, 23, 28, 0.10);
+}
+
+.row-hover:hover {
+  background-color: #FBE9DF;
 }

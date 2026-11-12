@@ -22,7 +22,6 @@ function getThumbnailPreset(title: string) {
   if (lower.includes("react")) return PALETTES[4];
   if (lower.includes("git")) return PALETTES[5];
 
-  // Hash title for stable fallback
   let hash = 0;
   for (let i = 0; i < title.length; i++) {
     hash = (hash << 5) - hash + title.charCodeAt(i);
@@ -46,16 +45,16 @@ export default function CourseCard({ course }: { course: Course }) {
   return (
     <Link
       href={`/courses/${courseId}`}
-      className="group flex flex-col bg-white border border-[#E2DED5] rounded-[14px] overflow-hidden text-inherit no-underline transition-all duration-150 hover:-translate-y-[3px] hover:shadow-[0_10px_24px_rgba(21,23,28,0.10)] focus-visible:outline-3 focus-visible:outline-[#C2410C] focus-visible:outline-offset-2"
+      className="group flex flex-col bg-white border border-[#E2DED5] rounded-[14px] overflow-hidden text-inherit no-underline card-hover focus-visible:outline-3 focus-visible:outline-[#C2410C] focus-visible:outline-offset-2"
     >
       {/* Thumbnail Area */}
-      <div className="relative h-[176px] overflow-hidden select-none">
+      <div className="relative h-[150px] sm:h-[176px] overflow-hidden select-none">
         {course.thumbnailUrl && !imageFailed ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={course.thumbnailUrl}
             alt={course.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
             onError={() => setImageFailed(true)}
           />
         ) : (
@@ -70,35 +69,42 @@ export default function CourseCard({ course }: { course: Course }) {
             />
             {/* Geometric rounded accent line */}
             <div
-              className="absolute left-6 bottom-6 w-16 h-2 rounded-[4px] pointer-events-none"
+              className="absolute left-6 bottom-5 sm:bottom-6 w-16 h-2 rounded-[4px] pointer-events-none"
               style={{ backgroundColor: preset.shape }}
             />
             {/* Tag */}
             <div
-              className="absolute left-6 top-5 font-['Space_Grotesk'] font-bold text-[40px] tracking-[-0.02em] leading-none pointer-events-none"
+              className="absolute left-6 top-4 sm:top-5 font-['Space_Grotesk'] font-bold text-[34px] sm:text-[40px] tracking-[-0.02em] leading-none pointer-events-none"
               style={{ color: preset.fg }}
             >
               {preset.tag}
             </div>
+
+            {/* Lecture count badge if available */}
+            {typeof course.lectureCount === "number" && course.lectureCount > 0 && (
+              <div className="absolute right-3.5 bottom-3.5 px-2.5 py-1 rounded-md bg-[#15171C]/75 backdrop-blur-sm text-white text-[12px] font-semibold tracking-wide">
+                {course.lectureCount} {course.lectureCount === 1 ? "lecture" : "lectures"}
+              </div>
+            )}
           </div>
         )}
       </div>
 
       {/* Content Area */}
-      <div className="flex flex-col gap-2.5 p-5 sm:p-[20px_22px_22px] flex-1">
-        <h2 className="m-0 font-['Space_Grotesk'] font-bold text-[21px] leading-[1.2] text-[#15171C] group-hover:text-[#C2410C] transition-colors">
+      <div className="flex flex-col gap-2.5 p-4 sm:p-[20px_22px_22px] flex-1">
+        <h2 className="m-0 font-['Space_Grotesk'] font-bold text-[19px] sm:text-[21px] leading-[1.2] text-[#15171C] group-hover:text-[#C2410C] transition-colors">
           {course.title}
         </h2>
-        <p className="m-0 text-[15px] leading-[1.5] text-[#5B606B] line-clamp-3">
+        <p className="m-0 text-[14.5px] sm:text-[15px] leading-[1.5] text-[#5B606B] line-clamp-3">
           {course.description}
         </p>
 
         {/* Footer info: price and CTA */}
-        <div className="mt-auto pt-3 flex items-center justify-between border-t border-transparent">
-          <span className="font-['Space_Grotesk'] font-bold text-[22px] text-[#15171C]">
+        <div className="mt-auto pt-3.5 flex items-center justify-between border-t border-[#F6F4EF]">
+          <span className="font-['Space_Grotesk'] font-bold text-[20px] sm:text-[22px] text-[#15171C]">
             {formatPrice(course.price)}
           </span>
-          <span className="text-[15px] font-semibold text-[#C2410C] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+          <span className="text-[14px] sm:text-[15px] font-semibold text-[#C2410C] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
             View course →
           </span>
         </div>
