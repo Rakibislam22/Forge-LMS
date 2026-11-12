@@ -4,6 +4,7 @@ import { useEffect, useState, use } from "react";
 import AdminSidebar from "@/components/AdminSidebar";
 import AdminCourseForm from "@/components/AdminCourseForm";
 import { Course, ApiResponse, CourseDetailResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 
 export default function EditCoursePage({
   params,
@@ -20,9 +21,7 @@ export default function EditCoursePage({
   useEffect(() => {
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}`
-          : `/api/courses/${courseId}`;
+        const apiUrl = `${API_BASE_URL}/courses/${courseId}`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",

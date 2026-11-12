@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
 import { Course, ApiResponse, CoursesResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 import { CourseSkeletonGrid, ErrorCoursesState } from "@/components/States";
 
 interface WatchedLectureHistory {
@@ -92,9 +93,7 @@ export default function StudentDashboardPage() {
     let ignore = false;
     async function fetchCourses() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-          : "/api/courses";
+        const apiUrl = `${API_BASE_URL}/courses`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",

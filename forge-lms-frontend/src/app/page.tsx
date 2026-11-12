@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
 import { Course, ApiResponse, CoursesResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 import {
   CourseSkeletonGrid,
   EmptyCoursesState,
@@ -41,9 +42,7 @@ export default function HomePage() {
   const fetchCourses = () => {
     setLoading(true);
     setError(null);
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL
-      ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-      : "/api/courses";
+    const apiUrl = `${API_BASE_URL}/courses`;
 
     fetch(apiUrl, {
       cache: "no-store",
@@ -72,9 +71,7 @@ export default function HomePage() {
     let ignore = false;
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-          : "/api/courses";
+        const apiUrl = `${API_BASE_URL}/courses`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",

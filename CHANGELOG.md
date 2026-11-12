@@ -43,6 +43,9 @@ in `Asia/Dhaka`.
 ### Changed
 -   Removed pre-filled hardcoded admin credentials from `AdminLoginPage` (`src/app/admin/login/page.tsx`), requiring the administrator to manually input credentials for secure authentication.
 
+### Removed
+-   Completely removed Next.js mock API routes and mock store (`src/app/api/`) from `forge-lms-frontend`, routing 100% of frontend HTTP requests directly to the standalone Express + MongoDB backend via `src/config/api.ts`.
+
 ### Fixed
 -   Cached `useSyncExternalStore` snapshot results (`cachedHistoryValue`, `cachedLastWatchedValue`) in `src/app/dashboard/page.tsx` against raw local storage string equality, preventing React 19 infinite re-render loop error (`The result of getSnapshot should be cached to avoid an infinite loop`).
 -   Configured `@tailwindcss/postcss` and PostCSS in `forge-lms-frontend` and switched build/dev scripts to `--webpack` mode, resolving Turbopack Windows process panic and unstyled CSS rendering.

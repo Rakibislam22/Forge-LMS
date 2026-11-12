@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Course, Lecture, ApiResponse, CourseDetailResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 import { formatPrice } from "@/components/CourseCard";
 import { EmptyCoursesState, ErrorCoursesState } from "@/components/States";
 
@@ -47,9 +48,7 @@ export default function CourseDetailPage({
     let ignore = false;
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}`
-          : `/api/courses/${courseId}`;
+        const apiUrl = `${API_BASE_URL}/courses/${courseId}`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",

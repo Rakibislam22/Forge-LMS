@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Course, ApiResponse, CoursesResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 import CourseCard from "@/components/CourseCard";
 import {
   CourseSkeletonGrid,
@@ -25,9 +26,7 @@ export default function CourseListing({ initialCourses }: CourseListingProps) {
 
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-          : "/api/courses";
+        const apiUrl = `${API_BASE_URL}/courses`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",
@@ -71,9 +70,7 @@ export default function CourseListing({ initialCourses }: CourseListingProps) {
   const handleRetryOrRefresh = () => {
     setLoading(true);
     setError(null);
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL
-      ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-      : "/api/courses";
+    const apiUrl = `${API_BASE_URL}/courses`;
 
     fetch(apiUrl, {
       cache: "no-store",

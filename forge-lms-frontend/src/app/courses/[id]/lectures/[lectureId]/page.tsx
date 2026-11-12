@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Course, Lecture, ApiResponse, LectureResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 import { getSafeEmbedUrl } from "@/utils/videoUrl";
 import { ErrorCoursesState } from "@/components/States";
 
@@ -30,9 +31,7 @@ export default function LectureWatchPage({
     let ignore = false;
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}/lectures/${lectureId}`
-          : `/api/courses/${courseId}/lectures/${lectureId}`;
+        const apiUrl = `${API_BASE_URL}/courses/${courseId}/lectures/${lectureId}`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",

@@ -4,6 +4,7 @@ import { useEffect, useState, use } from "react";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Course, Lecture, ApiResponse, CourseDetailResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 
 export default function AdminLecturesPage({
   params,
@@ -30,9 +31,7 @@ export default function AdminLecturesPage({
     setLoading(true);
     setError(null);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL
-        ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}`
-        : `/api/courses/${courseId}`;
+      const apiUrl = `${API_BASE_URL}/courses/${courseId}`;
 
       const res = await fetch(apiUrl, {
         cache: "no-store",
@@ -57,9 +56,7 @@ export default function AdminLecturesPage({
     let ignore = false;
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}`
-          : `/api/courses/${courseId}`;
+        const apiUrl = `${API_BASE_URL}/courses/${courseId}`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",
@@ -116,8 +113,8 @@ export default function AdminLecturesPage({
       const lecId = editingLecture?.id || editingLecture?._id;
 
       const apiUrl = isEdit
-        ? (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}/lectures/${lecId}` : `/api/courses/${courseId}/lectures/${lecId}`)
-        : (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}/lectures` : `/api/courses/${courseId}/lectures`);
+        ? `${API_BASE_URL}/courses/${courseId}/lectures/${lecId}`
+        : `${API_BASE_URL}/courses/${courseId}/lectures`;
 
       const res = await fetch(apiUrl, {
         method: isEdit ? "PUT" : "POST",
@@ -153,9 +150,7 @@ export default function AdminLecturesPage({
 
     try {
       const token = typeof window !== "undefined" ? localStorage.getItem("forge_admin_token") : "";
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL
-        ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}/lectures/${lecId}`
-        : `/api/courses/${courseId}/lectures/${lecId}`;
+      const apiUrl = `${API_BASE_URL}/courses/${courseId}/lectures/${lecId}`;
 
       const res = await fetch(apiUrl, {
         method: "DELETE",

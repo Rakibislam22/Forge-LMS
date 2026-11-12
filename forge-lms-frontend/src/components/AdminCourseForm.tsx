@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Course, ApiResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 
 interface CourseFormProps {
   initialCourse?: Course;
@@ -42,8 +43,8 @@ export default function AdminCourseForm({ initialCourse, isEdit = false }: Cours
       const id = initialCourse?.id || initialCourse?._id;
 
       const apiUrl = isEdit
-        ? (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${id}` : `/api/courses/${id}`)
-        : (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/courses` : "/api/courses");
+        ? `${API_BASE_URL}/courses/${id}`
+        : `${API_BASE_URL}/courses`;
 
       const res = await fetch(apiUrl, {
         method: isEdit ? "PUT" : "POST",

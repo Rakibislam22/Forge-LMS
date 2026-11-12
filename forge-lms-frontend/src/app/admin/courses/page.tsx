@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Course, ApiResponse, CoursesResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 import { formatPrice } from "@/components/CourseCard";
 
 export default function AdminCoursesPage() {
@@ -19,9 +20,7 @@ export default function AdminCoursesPage() {
     setLoading(true);
     setError(null);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL
-        ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-        : "/api/courses";
+      const apiUrl = `${API_BASE_URL}/courses`;
 
       const res = await fetch(apiUrl, {
         cache: "no-store",
@@ -45,9 +44,7 @@ export default function AdminCoursesPage() {
     let ignore = false;
     async function load() {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL
-          ? `${process.env.NEXT_PUBLIC_API_URL}/courses`
-          : "/api/courses";
+        const apiUrl = `${API_BASE_URL}/courses`;
 
         const res = await fetch(apiUrl, {
           cache: "no-store",
@@ -83,9 +80,7 @@ export default function AdminCoursesPage() {
 
     try {
       const token = typeof window !== "undefined" ? localStorage.getItem("forge_admin_token") : "";
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL
-        ? `${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`
-        : `/api/courses/${id}`;
+      const apiUrl = `${API_BASE_URL}/courses/${id}`;
 
       const res = await fetch(apiUrl, {
         method: "DELETE",

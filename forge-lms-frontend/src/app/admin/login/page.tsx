@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ApiResponse, LoginResponse } from "@/types/course";
+import { API_BASE_URL } from "@/config/api";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -18,9 +19,7 @@ export default function AdminLoginPage() {
     setError(null);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL
-        ? `${process.env.NEXT_PUBLIC_API_URL}/auth/login`
-        : "/api/auth/login";
+      const apiUrl = `${API_BASE_URL}/auth/login`;
 
       const res = await fetch(apiUrl, {
         method: "POST",
